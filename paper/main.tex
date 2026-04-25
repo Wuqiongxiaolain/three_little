@@ -1,0 +1,74 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setstretch{1.25}
+\graphicspath{{../results/figures/}{figures/}}
+
+\title{第十八届\u201c华中杯\u201d大学生数学建模挑战赛A题\\论文初稿（LaTeX 版）}
+\author{参赛队号：\underline{\hspace{4cm}}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+针对城市绿色物流配送调度问题，本文建立了\u201c静态基础模型 + 政策约束扩展 + 动态重调度机制\u201d的分层优化框架。问题一构建带软时间窗、双容量约束与时变速度的混合车队车辆路径模型，并以固定成本、运营成本和碳排放成本之和最小为目标；问题二在基础模型上加入绿色配送区限行约束，分析政策实施前后的成本与排放变化；问题三针对订单取消、新增、地址变更和时间窗调整等突发事件，采用事件触发的滚动时域重规划策略实现快速可行修复。求解方法采用\u201c构造启发式 + 局部搜索\u201d组合算法，并通过多维指标评价方案有效性。本文给出的论文框架与公式体系可直接用于后续数据实验、图表填充与定稿排版。
+
+\textbf{关键词：}绿色物流；车辆路径问题；软时间窗；混合车队；动态重调度
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\input{sections/01_problem}
+\input{sections/02_assumptions_symbols}
+\input{sections/03_model_q1}
+\input{sections/04_model_q2}
+\input{sections/05_model_q3}
+\input{sections/06_solution_results}
+\input{sections/07_evaluation_conclusion}
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+\appendix
+\section{附录：符号补充表}
+\begin{longtable}{p{0.2\textwidth}p{0.55\textwidth}p{0.15\textwidth}}
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endfirsthead
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endhead
+$N$ & 客户点集合，$0$ 表示配送中心 & - \\
+$K$ & 车辆集合 & - \\
+$T$ & 车型集合 & - \\
+$d_{ij}$ & 节点 $i$ 到节点 $j$ 的道路距离 & km \\
+$q_i^w$ & 客户 $i$ 的重量需求 & kg \\
+$q_i^v$ & 客户 $i$ 的体积需求 & m$^3$ \\
+$[e_i,l_i]$ & 客户 $i$ 的时间窗 & h \\
+$s_i$ & 客户 $i$ 的服务时间 & h \\
+$Q_t^w,Q_t^v$ & 车型 $t$ 的最大载重与最大容积 & kg, m$^3$ \\
+$x_{ijk}^t$ & 车型 $t$ 的车辆 $k$ 是否由 $i$ 行至 $j$ & 0-1 \\
+$y_{ik}^t$ & 客户 $i$ 是否由车型 $t$ 的车辆 $k$ 服务 & 0-1 \\
+$t_i$ & 车辆到达客户 $i$ 的时刻 & h \\
+$z_k^t$ & 车型 $t$ 的车辆 $k$ 是否被启用 & 0-1 \\
+\bottomrule
+\end{longtable}
+
+\end{document}

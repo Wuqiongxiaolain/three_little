@@ -1,0 +1,18 @@
+\section{模型评价与结论}
+
+\subsection{模型优点}
+\begin{enumerate}[label=\arabic*)]
+    \item 分层建模结构清晰，便于逐问扩展；
+    \item 双容量、软时间窗、政策约束与动态事件均可统一纳入；
+    \item 算法工程实现成本低，适合比赛时限内快速迭代。
+\end{enumerate}
+
+\subsection{模型局限}
+\begin{enumerate}[label=\arabic*)]
+    \item 时变速度采用分段近似，未显式考虑随机波动传播；
+    \item 动态重调度以局部最优为主，缺乏全局回溯机制；
+    \item 未纳入充电排队、司机工时等更细粒度运营约束。
+\end{enumerate}
+
+\subsection{结论与后续工作}
+本文完成了面向 A 题的论文初稿结构与核心模型搭建。后续可基于程序输出结果补充图表、完成参数标定与消融实验，并进一步优化语言表达与排版细节以形成终稿。

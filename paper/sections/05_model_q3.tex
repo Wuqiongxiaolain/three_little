@@ -1,0 +1,27 @@
+\section{问题三：动态事件驱动重调度模型}
+
+\subsection{动态事件类型}
+考虑四类常见事件：订单取消、新增订单、客户地址变化、时间窗更新。问题三目标不是每次求全局最优，而是在有限计算时间内快速生成高质量可行解。
+
+\subsection{滚动时域机制}
+设重规划时刻为 $t^r$，滚动窗口长度为 $H$。在每个事件触发时刻，仅对未完成任务子集进行局部重优化：
+\begin{equation}
+\min \ Z\bigl(\mathcal{R}(t^r,H)\bigr)
+\end{equation}
+其中 $\mathcal{R}(t^r,H)$ 表示当前滚动窗口内需要重新决策的任务集合。
+
+\subsection{快速修复策略}
+采用\u201c插入-删除-交换\u201d三类算子进行局部修复：
+\begin{enumerate}[label=\arabic*)]
+    \item 新增订单：最小增量成本插入；
+    \item 订单取消：从既有路径删除并局部平衡；
+    \item 地址/时间窗变化：邻域内重排并二次可行性检查。
+\end{enumerate}
+
+\subsection{算法终止准则}
+可使用以下任一条件作为终止准则：
+\begin{enumerate}[label=\arabic*)]
+    \item 达到最大迭代次数；
+    \item 连续若干次迭代无改进；
+    \item 达到实时响应时限（如 30 秒）。
+\end{enumerate}

@@ -1,0 +1,43 @@
+\section{问题一：静态基础模型}
+
+\subsection{目标函数}
+以总成本最小为优化目标，综合考虑车辆固定启用成本、运输能耗成本、碳排放成本与时间窗惩罚：
+\begin{equation}
+\min Z = \sum_{t\in T}\sum_{k\in K} C_{\text{fix}} z_k^t
++ \sum_{t\in T}\sum_{k\in K}\sum_{i\in N}\sum_{j\in N}
+\left(C_{\text{op}}^{ijk,t} + C_{\text{em}}^{ijk,t}\right)
++ \sum_{i\in N} P_i .
+\end{equation}
+
+其中软时间窗惩罚可写为
+\begin{equation}
+P_i = \alpha\max(e_i-t_i,0) + \beta\max(t_i-l_i,0).
+\end{equation}
+
+\subsection{约束条件}
+\textbf{(1) 双容量约束}
+\begin{align}
+\sum_{i\in N} q_i^w y_{ik}^t &\le Q_t^w,\quad \forall k\in K,\forall t\in T,\\
+\sum_{i\in N} q_i^v y_{ik}^t &\le Q_t^v,\quad \forall k\in K,\forall t\in T.
+\end{align}
+
+\textbf{(2) 路径连续性约束}
+\begin{align}
+\sum_{j\in N, j\neq i} x_{ijk}^t &= y_{ik}^t, \quad \forall i,k,t,\\
+\sum_{i\in N, i\neq j} x_{ijk}^t &= y_{jk}^t, \quad \forall j,k,t.
+\end{align}
+
+\textbf{(3) 时间递推约束}
+\begin{equation}
+t_j \ge t_i + s_i + \frac{d_{ij}}{v_{ij}} - M(1-x_{ijk}^t),\quad \forall i,j,k,t.
+\end{equation}
+
+\textbf{(4) 车辆可用数量约束}
+\begin{equation}
+\sum_{k\in K} z_k^t \le N_t,\quad \forall t\in T.
+\end{equation}
+
+\textbf{(5) 变量取值约束}
+\begin{equation}
+x_{ijk}^t,y_{ik}^t,z_k^t\in\{0,1\},\quad t_i\ge 0.
+\end{equation}

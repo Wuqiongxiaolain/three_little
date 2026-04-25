@@ -1,0 +1,28 @@
+\section{问题二：绿色配送区政策约束扩展}
+
+\subsection{约束扩展思路}
+问题二不改变问题一的主体结构，仅在基础模型上增加\u201c区域-时段-车型\u201d耦合约束。设 $g_i$ 表示客户 $i$ 是否位于绿色配送区，$\tau_i$ 表示服务时刻。
+
+当客户位于绿色区且服务时刻处于限行时段（如 $[8{:}00,16{:}00]$）时，燃油车型不允许服务：
+\begin{equation}
+g_i=1,\ \tau_i\in[8,16] \Rightarrow y_{ik}^t=0,\quad \forall t\in T_{\text{fuel}},\forall k\in K.
+\end{equation}
+
+在实现中可将其改写为线性不等式，便于求解器处理。
+
+\subsection{对比评价指标}
+为体现政策效应，建议比较如下指标：
+\begin{enumerate}[label=\arabic*)]
+    \item 总成本变化率；
+    \item 总碳排放变化率；
+    \item 燃油车与新能源车的任务占比变化；
+    \item 平均客户迟到时长变化。
+\end{enumerate}
+
+\subsection{结果展示建议}
+图表建议至少包括：
+\begin{enumerate}[label=\arabic*)]
+    \item 政策前后车辆类型使用对比柱状图；
+    \item 政策前后路径示意图；
+    \item 成本与排放对比表。
+\end{enumerate}

@@ -1,0 +1,40 @@
+\section{求解流程与结果分析（待填充）}
+
+\subsection{求解算法框架}
+建议采用\u201c构造启发式 + 局部搜索\u201d两阶段流程：
+\begin{enumerate}[label=\arabic*)]
+    \item 初始解构造：聚类/扫描法 + 最近邻插入；
+    \item 邻域改进：2-opt、跨路径交换、重定位；
+    \item 约束修复：时间窗与容量违规惩罚回退；
+    \item 输出结果：路径、成本、排放、服务质量指标。
+\end{enumerate}
+
+\subsection{结果表格模板}
+\begin{table}[H]
+\centering
+\caption{三类问题结果汇总（示例模板）}
+\begin{tabular}{cccccc}
+\toprule
+场景 & 总成本(元) & 碳排放(kg) & 车辆数(辆) & 平均迟到(h) & 求解时间(s) \\
+\midrule
+问题一 & 待填 & 待填 & 待填 & 待填 & 待填 \\
+问题二 & 待填 & 待填 & 待填 & 待填 & 待填 \\
+问题三 & 待填 & 待填 & 待填 & 待填 & 待填 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{图件插入模板}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{route_example.png}
+    \caption{路径规划结果示意图（占位图，待替换）}
+\end{figure}
+
+\subsection{敏感性分析建议}
+建议至少分析以下敏感性：
+\begin{enumerate}[label=\arabic*)]
+    \item 碳排放成本系数变化对车型选择的影响；
+    \item 迟到惩罚系数变化对时间窗满足率的影响；
+    \item 绿色区半径或限行时段变化对总成本的影响。
+\end{enumerate}
